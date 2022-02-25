@@ -24,7 +24,7 @@ const Featured = () => {
             <div className="absolute left-2   top-[40%] cursor-pointer  md:left-4 xl:left-6">
                 <div
                     onClick={leftArrowHandler}
-                    className="relative z-50  h-12  w-4 cursor-pointer overflow-hidden rounded-full bg-red-600  md:h-16 md:w-7"
+                    className="relative z-40  h-12  w-4 cursor-pointer overflow-hidden rounded-full bg-red-600  md:h-16 md:w-7"
                 >
                     <Image
                         layout="fill"
@@ -57,7 +57,7 @@ const Featured = () => {
             <div className="absolute   right-2 top-[40%] md:right-4 xl:right-6">
                 <div
                     onClick={rightArrowHandler}
-                    className=":h-16 relative  z-50  h-12 w-4 cursor-pointer overflow-hidden rounded-full md:w-7"
+                    className=":h-16 relative  z-40  h-12 w-4 cursor-pointer overflow-hidden rounded-full md:w-7"
                 >
                     <Image
                         layout="fill"
