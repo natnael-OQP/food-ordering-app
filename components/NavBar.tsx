@@ -5,8 +5,8 @@ const NavBar = () => {
         <div className="sticky top-0 z-50 flex h-[70px] items-center justify-between bg-red-600 px-4 shadow-md md:px-5 xl:px-10">
             {/* left */}
             <div className="flex items-center space-x-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white">
-                    <div className="relative m-[10px] h-8 w-8 overflow-hidden rounded-full ">
+                <div className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white hover:shadow-xl">
+                    <div className="relative m-[10px] h-8 w-8  overflow-hidden rounded-full  ">
                         <Image
                             layout="fill"
                             objectFit="contain"
@@ -30,10 +30,10 @@ const NavBar = () => {
                     <li className="listItem">HomePage</li>
                     <li className="listItem">Product</li>
                     <li className="listItem">Menu</li>
-                    <div className="relative  h-11 w-28 overflow-hidden rounded-full ">
+                    <div className="relative  h-14 w-36 overflow-hidden rounded-full ">
                         <Image
                             layout="fill"
-                            objectFit="cover"
+                            objectFit="contain"
                             src="/img/logo.png"
                             alt="logo"
                         />
