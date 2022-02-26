@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Footer = () => {
     return (
         <div className="mt-16 grid grid-cols-1 gap-y-8 bg-gray-800   sm:flex-row md:grid-cols-2 md:gap-x-6">
-            <div className="relative h-[350px]  w-full bg-slate-300  md:h-[540px] xl:h-[600px]">
+            <div className="relative h-[350px] w-full md:h-[540px] xl:h-[600px]">
                 <Image
                     layout="fill"
                     objectFit="cover"
