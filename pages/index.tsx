@@ -6,7 +6,7 @@ import ProductList from '../components/ProductList'
 
 export default function Home() {
     return (
-        <div className="">
+        <div>
             <Head>
                 <title>Pizza Restaurant </title>
                 <meta name="description" content="best Pizza Shop in Addise" />
