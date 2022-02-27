@@ -1,15 +1,21 @@
 import Image from 'next/image'
-import React, { ReactElement, useState } from 'react'
-import CheckBox from '../../components/CheckBox'
+import React, { ReactElement } from 'react'
 import Layout from '../../components/layout'
 
 const Orders = () => {
-    const [status, setStatus] = useState<number>(0)
-
+    const status = 0
+    const statusClass = (index: number) => {
+        if (index - status < 1)
+            return 'mt-10 flex flex-col items-center justify-around'
+        if (index - status === 1)
+            return 'mt-10 flex flex-col items-center justify-around animate-pulse'
+        if (index - status > 1)
+            return 'mt-10 flex flex-col items-center justify-around opacity-20'
+    }
     return (
-        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-5 xl:pt-10 ">
+        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-5 xl:pt-10">
             <div className="md:px-4 xl:col-span-3">
-                <table className="w-full   text-left">
+                <table className="w-full  text-left">
                     <tr>
                         <th>Order ID</th>
                         <th>Customer</th>
@@ -43,48 +49,92 @@ const Orders = () => {
                         </td>
                     </tr>
                 </table>
-                {/*  */}
-                <div className="mt-10 flex">
+                {/* order status  */}
+                <div className="flex items-center justify-around">
                     {/* items-1 */}
-                    <div>
-                        <div className="relative h-20 w-20 rounded-full ">
+                    <div className={statusClass(0)}>
+                        <div className="relative h-10 w-10 rounded-full ">
+                            <Image
+                                layout="fill"
+                                objectFit="contain"
+                                src="/img/paid.png"
+                                alt="logo"
+                            />
+                        </div>
+                        <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
+                            payment
+                        </span>
+                        <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
-                                src="/img/paid.png"
+                                src="/img/checked.png"
                                 alt="logo"
                             />
                         </div>
                     </div>
                     {/* items-2 */}
-                    <div>
-                        <div className="relative h-20 w-20 rounded-full ">
+                    <div className={statusClass(1)}>
+                        <div className="relative h-10 w-10 rounded-full ">
+                            <Image
+                                layout="fill"
+                                objectFit="contain"
+                                src="/img/bake.png"
+                                alt="logo"
+                            />
+                        </div>
+                        <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
+                            Preparing
+                        </span>
+                        <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
-                                src="/img/bake.png"
+                                src="/img/checked.png"
                                 alt="logo"
                             />
                         </div>
                     </div>
                     {/* items-3 */}
-                    <div>
-                        <div className="relative h-20 w-20 rounded-full ">
+                    <div className={statusClass(2)}>
+                        <div className="relative h-10 w-10 rounded-full ">
+                            <Image
+                                layout="fill"
+                                objectFit="contain"
+                                src="/img/bike.png"
+                                alt="logo"
+                            />
+                        </div>
+                        <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
+                            On the Way
+                        </span>
+                        <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
-                                src="/img/bike.png"
+                                src="/img/checked.png"
                                 alt="logo"
                             />
                         </div>
                     </div>
                     {/* items-4 */}
-                    <div>
-                        <div className="relative h-20 w-20 rounded-full ">
+                    <div className={statusClass(3)}>
+                        <div className="relative h-10 w-10 rounded-full ">
+                            <Image
+                                layout="fill"
+                                objectFit="contain"
+                                src="/img/delivered.png"
+                                alt="logo"
+                            />
+                        </div>
+                        <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
+                            Delivered
+                        </span>
+                        <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
-                                src="/img/delivered.png"
+                                src="/img/checked.png"
                                 alt="logo"
                             />
                         </div>
