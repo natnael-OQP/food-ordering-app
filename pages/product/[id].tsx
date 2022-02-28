@@ -1,19 +1,17 @@
+import axios from 'axios'
+import { GetServerSideProps } from 'next'
 import Image from 'next/image'
-import React, { ReactElement, useState } from 'react'
+import React, { FC, ReactElement, useState } from 'react'
 import CheckBox from '../../components/CheckBox'
 import Layout from '../../components/layout'
+import { IProduct } from '../../type'
 
-const Product = () => {
+interface Props {
+    product: IProduct
+}
+
+export default function Product({ product }: Props) {
     const [size, setSize] = useState<number>(0)
-
-    const pizza = {
-        id: 1,
-        img: '/img/pizza.png',
-        name: 'Test Pizza',
-        price: [19.9, 23.9, 27.9],
-        description:
-            'Lorem, ipsum dolor sit amet adipisicing elit. Facilis qui nesciunt atque consequatur illum aspernatur officiis quas pariatur error earum voluptatem similique',
-    }
 
     return (
         <div className=" grid h-full grid-cols-1 pt-5 md:h-[95vh] md:grid-cols-2 md:py-10  xl:h-[calc(100vh_-_70px)]">
@@ -21,22 +19,22 @@ const Product = () => {
                 <Image
                     layout="fill"
                     objectFit="contain"
-                    src={pizza.img}
+                    src={product.image}
                     alt="logo"
                 />
             </div>
             <div className=" flex flex-col space-y-3 px-2 md:mt-0 md:space-y-8 md:px-0 ">
                 <h1 className="text-3xl font-bold text-gray-800 md:text-5xl">
-                    {pizza.name}
+                    {product.title}
                 </h1>
                 <span className="text-2xl font-semibold text-gray-600">
-                    {pizza.price[size]}
+                    {/* {product.prices[0]} */}
                     <span className="text-xs font-medium text-gray-400 ">
                         birr
                     </span>
                 </span>
                 <p className=" text-base text-gray-600 md:pr-6  xl:pr-10">
-                    {pizza.description}
+                    {product.description}
                 </p>
                 <h3 className=" text-3xl font-bold text-gray-900 ">
                     Choose the size
@@ -111,8 +109,18 @@ const Product = () => {
     )
 }
 
-export default Product
-
 Product.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { data: product } = await axios.get(
+        'http://localhost:3000/api/product'
+    )
+    
+    return {
+        props: {
+            product,
+        },
+    }
 }
