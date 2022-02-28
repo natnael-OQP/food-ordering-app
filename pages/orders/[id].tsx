@@ -6,15 +6,15 @@ const Orders = () => {
     const status = 0
     const statusClass = (index: number) => {
         if (index - status < 1)
-            return 'mt-10 flex flex-col items-center justify-around'
+            return 'mt-10 flex flex-col items-center justify-around space-y-3'
         if (index - status === 1)
-            return 'mt-10 flex flex-col items-center justify-around animate-pulse'
+            return 'mt-10 flex flex-col items-center justify-around animate-pulse space-y-3'
         if (index - status > 1)
-            return 'mt-10 flex flex-col items-center justify-around opacity-20'
+            return 'mt-10 flex flex-col items-center justify-around opacity-20 space-y-3'
     }
     return (
-        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-5 xl:pt-10">
-            <div className="md:px-4 xl:col-span-3">
+        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-6 xl:pt-10">
+            <div className="md:px-4 xl:col-span-4">
                 <table className="w-full  text-left">
                     <tr>
                         <th>Order ID</th>
@@ -50,7 +50,7 @@ const Orders = () => {
                     </tr>
                 </table>
                 {/* order status  */}
-                <div className="flex items-center justify-around">
+                <div className="flex items-start justify-around">
                     {/* items-1 */}
                     <div className={statusClass(0)}>
                         <div className="relative h-10 w-10 rounded-full ">
@@ -86,14 +86,14 @@ const Orders = () => {
                         <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
                             Preparing
                         </span>
-                        <div className="relative h-6 w-6 rounded-full ">
+                        {/* <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
                                 src="/img/checked.png"
                                 alt="logo"
                             />
-                        </div>
+                        </div> */}
                     </div>
                     {/* items-3 */}
                     <div className={statusClass(2)}>
@@ -108,14 +108,14 @@ const Orders = () => {
                         <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
                             On the Way
                         </span>
-                        <div className="relative h-6 w-6 rounded-full ">
+                        {/* <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
                                 src="/img/checked.png"
                                 alt="logo"
                             />
-                        </div>
+                        </div> */}
                     </div>
                     {/* items-4 */}
                     <div className={statusClass(3)}>
@@ -130,14 +130,14 @@ const Orders = () => {
                         <span className="text-base font-semibold text-gray-900 md:text-xl xl:text-2xl">
                             Delivered
                         </span>
-                        <div className="relative h-6 w-6 rounded-full ">
+                        {/* <div className="relative h-6 w-6 rounded-full ">
                             <Image
                                 layout="fill"
                                 objectFit="cover"
                                 src="/img/checked.png"
                                 alt="logo"
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
