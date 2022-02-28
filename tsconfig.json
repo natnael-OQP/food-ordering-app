@@ -20,7 +20,7 @@
         "**/*.ts",
         "**/*.tsx",
         "components/layout.js",
-        "lib/dbConnection.js"
+        "lib/dbConnect.js"
     ],
     "exclude": ["node_modules"]
 }
