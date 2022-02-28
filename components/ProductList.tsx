@@ -1,6 +1,11 @@
+import { FC } from 'react'
+import { IProduct } from '../type'
 import PizzaCard from './PizzaCard'
+interface Props {
+    productList: IProduct[]
+}
 
-const ProductList = () => {
+const ProductList: FC<Props> = ({ productList }) => {
     return (
         <div className="flex flex-col items-center bg-slate-50 pt-20">
             <h1 className="text-3xl font-bold  text-gray-700 xl:text-5xl">
@@ -13,11 +18,9 @@ const ProductList = () => {
             </p>
             {/* PizzaCard container */}
             <div className="mt-16 grid grid-cols-1 gap-8  sm:grid-cols-2 md:max-w-[90vw] xl:max-w-[87vw] xl:grid-cols-4">
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
-                <PizzaCard />
+                {productList.map((product) => (
+                    <PizzaCard key={product._id} product={product} />
+                ))}
             </div>
         </div>
     )
