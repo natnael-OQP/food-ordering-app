@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 const NavBar = () => {
     return (
@@ -6,14 +7,16 @@ const NavBar = () => {
             {/* left */}
             <div className="flex items-center space-x-4">
                 <div className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white hover:shadow-xl">
-                    <div className="relative m-[10px] h-8 w-8  overflow-hidden rounded-full  ">
-                        <Image
-                            layout="fill"
-                            objectFit="contain"
-                            src="/img/telephone.png"
-                            alt="telephone"
-                        />
-                    </div>
+                    <Link href="/" passHref>
+                        <div className="relative m-[10px] h-8 w-8  overflow-hidden rounded-full  ">
+                            <Image
+                                layout="fill"
+                                objectFit="contain"
+                                src="/img/telephone.png"
+                                alt="telephone"
+                            />
+                        </div>
+                    </Link>
                 </div>
                 <div>
                     <div className="text-sm font-normal text-white ">
