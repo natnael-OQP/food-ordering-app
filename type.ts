@@ -4,7 +4,7 @@ export interface IProduct {
     description: string
     image: string
     prices: [number]
-    extraOption: Object
+    extraOption: [{ text: string; price: number }]
     createdAt: Date
     updatedAt: Date
 }
