@@ -7,7 +7,7 @@ interface Props {
 
 const ProductList: FC<Props> = ({ productList }) => {
     return (
-        <div className="flex flex-col items-center bg-slate-50 pt-20">
+        <div className="pb-30  flex flex-col items-center bg-slate-50 pt-20">
             <h1 className="text-3xl font-bold  text-gray-700 xl:text-5xl">
                 The Pizza in Addise
             </h1>
