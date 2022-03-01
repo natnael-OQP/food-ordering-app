@@ -1,17 +1,35 @@
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
-import React, { FC, ReactElement, useState } from 'react'
-import CheckBox from '../../components/CheckBox'
+import React, { ChangeEvent, ReactElement, useState } from 'react'
 import Layout from '../../components/layout'
 import { IProduct } from '../../type'
 
 interface Props {
-    product: IProduct
+    pizza: IProduct
 }
 
-export default function Product({ product }: Props) {
+export default function Product({ pizza }: Props) {
     const [size, setSize] = useState<number>(0)
+    const [price, setPrice] = useState<number>(pizza.prices[size])
+
+    const handelSize = (index: number) => {
+        const deference = pizza.prices[index] - pizza.prices[size]
+        setSize(index)
+        setPrice(price + deference)
+    }
+
+    const handelChange = (
+        e: ChangeEvent<HTMLInputElement>,
+        extraPrice: number
+    ) => {
+        const checked = e.target.checked
+        if (checked) {
+            setPrice(price + extraPrice)
+        } else {
+            setPrice(price - extraPrice)
+        }
+    }
 
     return (
         <div className=" grid h-full grid-cols-1 pt-5 md:h-[95vh] md:grid-cols-2 md:py-10  xl:h-[calc(100vh_-_70px)]">
@@ -19,29 +37,29 @@ export default function Product({ product }: Props) {
                 <Image
                     layout="fill"
                     objectFit="contain"
-                    src={product.image}
+                    src={pizza.image}
                     alt="logo"
                 />
             </div>
             <div className=" flex flex-col space-y-3 px-2 md:mt-0 md:space-y-8 md:px-0 ">
                 <h1 className="text-3xl font-bold text-gray-800 md:text-5xl">
-                    {product.title}
+                    {pizza.title}
                 </h1>
                 <span className="text-2xl font-semibold text-gray-600">
-                    {/* {product.prices[0]} */}
+                    {price}
                     <span className="text-xs font-medium text-gray-400 ">
                         birr
                     </span>
                 </span>
                 <p className=" text-base text-gray-600 md:pr-6  xl:pr-10">
-                    {product.description}
+                    {pizza.description}
                 </p>
                 <h3 className=" text-3xl font-bold text-gray-900 ">
                     Choose the size
                 </h3>
                 <div className="flex items-center space-x-8 pl-5 sm:pl-0">
                     <div
-                        onClick={() => setSize(0)}
+                        onClick={() => handelSize(0)}
                         className="relative h-[50px] w-[50px] transform-gpu cursor-pointer transition duration-200 ease-in-out hover:scale-105  active:scale-95"
                     >
                         <Image
@@ -55,7 +73,7 @@ export default function Product({ product }: Props) {
                         </span>
                     </div>
                     <div
-                        onClick={() => setSize(1)}
+                        onClick={() => handelSize(1)}
                         className="relative h-[65px] w-[65px] transform-gpu cursor-pointer transition duration-200 ease-in-out hover:scale-105  active:scale-95"
                     >
                         <Image
@@ -69,7 +87,7 @@ export default function Product({ product }: Props) {
                         </span>
                     </div>
                     <div
-                        onClick={() => setSize(2)}
+                        onClick={() => handelSize(2)}
                         className="relative h-[80px] w-[80px] transform-gpu cursor-pointer transition duration-200 ease-in-out hover:scale-105  active:scale-95"
                     >
                         <Image
@@ -88,10 +106,23 @@ export default function Product({ product }: Props) {
                     Choose the size
                 </h3>
                 <div className="grid grid-cols-2 gap-x-2 gap-y-2 xl:grid-cols-4">
-                    <CheckBox name="2X Ingredient" />
-                    <CheckBox name="Extra Cheese" />
-                    <CheckBox name="Spicy Sauce" />
-                    <CheckBox name="Garlic Sauce" />
+                    {pizza.extraOption.map((option, i: number) => (
+                        <div className="flex items-center" key={i}>
+                            <input
+                                onChange={(e) => handelChange(e, option.price)}
+                                className="h-5 w-5"
+                                type="checkbox"
+                                id={option.text}
+                                name={option.text}
+                            />
+                            <label
+                                className="ml-2 cursor-pointer select-none text-base font-semibold capitalize text-gray-700"
+                                htmlFor={option.text}
+                            >
+                                {option.text}
+                            </label>
+                        </div>
+                    ))}
                 </div>
                 {/* add to cart button */}
                 <div className="mt-4 flex space-x-4">
@@ -108,19 +139,20 @@ export default function Product({ product }: Props) {
         </div>
     )
 }
-
 Product.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { data: product } = await axios.get(
-        'http://localhost:3000/api/product'
+export const getServerSideProps: GetServerSideProps = async ({
+    params: { id },
+}: any) => {
+    const { data: pizza } = await axios.get(
+        `http://localhost:3000/api/product/${id}`
     )
-    
+
     return {
         props: {
-            product,
+            pizza,
         },
     }
 }
