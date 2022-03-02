@@ -25,6 +25,6 @@
 
 @layer components {
     .listItem {
-        @apply text-base font-bold capitalize text-white;
+        @apply cursor-pointer text-base font-bold capitalize text-white;
     }
 }
