@@ -187,7 +187,3 @@ const Orders = () => {
 }
 
 export default Orders
-
-Orders.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>
-}
