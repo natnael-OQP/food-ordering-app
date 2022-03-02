@@ -20,7 +20,10 @@
         "**/*.ts",
         "**/*.tsx",
         "components/layout.js",
-        "lib/dbConnect.js"
+        "lib/dbConnect.js",
+        "redux/store.js",
+        "pages/_app.js",
+        "redux/cartSlice.js"
     ],
     "exclude": ["node_modules"]
 }
