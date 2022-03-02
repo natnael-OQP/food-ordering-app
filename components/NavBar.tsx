@@ -51,18 +51,20 @@ const NavBar = () => {
             </div>
             {/* right */}
             <div>
-                <div className="relative  h-7 w-7  rounded-full ">
-                    <Image
-                        layout="fill"
-                        className="m-1"
-                        objectFit="contain"
-                        src="/img/cart.png"
-                        alt="cart"
-                    />
-                    <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-semibold text-red-600">
-                        {quantity}
-                    </span>
-                </div>
+                <Link href="/cart" passHref>
+                    <div className="relative  h-7 w-7  cursor-pointer rounded-full">
+                        <Image
+                            layout="fill"
+                            className="m-1"
+                            objectFit="contain"
+                            src="/img/cart.png"
+                            alt="cart"
+                        />
+                        <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-semibold text-red-600">
+                            {quantity}
+                        </span>
+                    </div>
+                </Link>
             </div>
         </div>
     )
