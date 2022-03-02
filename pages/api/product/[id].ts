@@ -34,7 +34,7 @@ export default async function handler(
 
     if (method === 'DELETE') {
         try {
-            const product = await Product.find()
+            const product = await Product.deleteOne({ _id: id })
             res.status(200).json(product)
         } catch (error) {
             res.status(5000).json(error)
