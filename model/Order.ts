@@ -10,7 +10,7 @@ const OrderSchema = new mongoose.Schema(
             type: 'string',
             required: true,
         },
-        Address: {
+        address: {
             type: 'string',
             required: true,
         },
