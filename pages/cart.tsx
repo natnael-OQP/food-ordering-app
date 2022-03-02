@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import { ReactElement } from 'react'
+import { RootStateOrAny, useSelector } from 'react-redux'
 import Layout from '../components/layout'
 
 const Cart = () => {
+    const total = useSelector((state: RootStateOrAny) => state.cart.total)
+    const pizzas = useSelector((state: RootStateOrAny) => state.cart.products)
     return (
         <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-5 xl:pt-10 ">
             <div className="md:px-4 xl:col-span-3">
@@ -16,86 +19,53 @@ const Cart = () => {
                         <th>Total</th>
                     </tr>
                     {/* table data */}
-                    <tr>
-                        <td>
-                            <div className="relative my-2   h-10  w-10  rounded-full  md:h-20 md:w-20">
-                                <Image
-                                    layout="fill"
-                                    objectFit="cover"
-                                    src="/img/pizza.png"
-                                    alt="logo"
-                                />
-                            </div>
-                        </td>
-                        <td>
-                            <span className="text-xs font-light text-red-400 md:text-sm md:font-medium">
-                                Pizza name
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-500">
-                                2X Ingredient,Extra Cheese
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-800">
-                                19
-                            </span>{' '}
-                            <span className="text-xs font-normal text-gray-400 ">
-                                birr
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-600">
-                                3
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-600">
-                                90
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className="relative my-2   h-10  w-10  rounded-full  md:h-20 md:w-20">
-                                <Image
-                                    layout="fill"
-                                    objectFit="cover"
-                                    src="/img/pizza.png"
-                                    alt="logo"
-                                />
-                            </div>
-                        </td>
-                        <td>
-                            <span className="text-xs font-light text-red-400 md:text-sm md:font-medium">
-                                Pizza name
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-500">
-                                2X Ingredient,Extra Cheese
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-800">
-                                19
-                            </span>{' '}
-                            <span className="text-xs font-normal text-gray-400 ">
-                                birr
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-600">
-                                3
-                            </span>
-                        </td>
-                        <td>
-                            <span className="text-sm font-medium text-gray-600">
-                                90
-                            </span>
-                        </td>
-                    </tr>
+                    {pizzas.map((pizza: any) => (
+                        <tr key={pizza._id}>
+                            <td>
+                                <div className="relative my-2   h-10  w-10  rounded-full  md:h-20 md:w-20">
+                                    <Image
+                                        layout="fill"
+                                        objectFit="cover"
+                                        src={pizza.image}
+                                        alt="logo"
+                                    />
+                                </div>
+                            </td>
+                            <td>
+                                <span className="text-xs font-light text-red-400 md:text-sm md:font-medium">
+                                    {pizza.title}
+                                </span>
+                            </td>
+                            <td>
+                                {pizza.extra.map((option: any) => (
+                                    <span
+                                        key={option._id}
+                                        className="ml-1 text-sm font-medium text-gray-500"
+                                    >
+                                        {option.text},
+                                    </span>
+                                ))}
+                            </td>
+                            <td>
+                                <span className="text-sm font-medium text-gray-800">
+                                    {pizza.price}
+                                </span>{' '}
+                                <span className="text-xs font-normal text-gray-400 ">
+                                    birr
+                                </span>
+                            </td>
+                            <td>
+                                <span className="text-sm font-medium text-gray-600">
+                                    {pizza.quantity}
+                                </span>
+                            </td>
+                            <td>
+                                <span className="text-sm font-medium text-gray-600">
+                                    {pizza.price * pizza.quantity}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
                 </table>
             </div>
             <div className="mx-auto h-[300px] rounded-lg bg-slate-700 p-6 px-10 shadow-lg md:w-[500px] xl:w-[300px] ">
@@ -107,7 +77,7 @@ const Cart = () => {
                         Subtotal:{' '}
                     </b>
                     <span className="ml-[6px] flex items-center text-lg font-medium text-gray-100">
-                        79{' '}
+                        {total}{' '}
                         <span className="ml-1 text-xs font-normal text-gray-400 ">
                             birr
                         </span>
@@ -118,7 +88,7 @@ const Cart = () => {
                         Discount:{' '}
                     </b>
                     <span className="ml-[6px] flex items-center text-lg font-medium text-gray-100">
-                        79{' '}
+                        0.00{' '}
                         <span className="ml-1 text-xs font-normal text-gray-400 ">
                             birr
                         </span>
@@ -129,7 +99,7 @@ const Cart = () => {
                         Total:{' '}
                     </b>
                     <span className="ml-[6px] flex items-center text-lg font-medium text-gray-100">
-                        79{' '}
+                        {total}{' '}
                         <span className="ml-1 text-xs font-normal text-gray-400 ">
                             birr
                         </span>
@@ -144,7 +114,3 @@ const Cart = () => {
 }
 
 export default Cart
-
-Cart.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>
-}
