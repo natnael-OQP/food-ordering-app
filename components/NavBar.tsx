@@ -32,21 +32,34 @@ const NavBar = () => {
             {/* center */}
             <div className="hidden flex-grow md:inline-block">
                 <ul className="hidden items-center  justify-center space-x-2 md:flex  xl:space-x-5 ">
-                    <li className="listItem">HomePage</li>
-                    <li className="listItem">Product</li>
-                    <li className="listItem">Menu</li>
-                    <div className="relative  h-14 w-36 overflow-hidden rounded-full ">
-                        <Image
-                            layout="fill"
-                            objectFit="contain"
-                            src="/img/logo.png"
-                            alt="logo"
-                        />
-                    </div>
-
-                    <li className="listItem">Events</li>
-                    <li className="listItem">Blog</li>
-                    <li className="listItem">Contact</li>
+                    <Link href="/">
+                        <li className="listItem">HomePage</li>
+                    </Link>
+                    <Link href="/">
+                        <li className="listItem">Product</li>
+                    </Link>
+                    <Link href="/">
+                        <li className="listItem">Menu</li>
+                    </Link>
+                    <Link href="/">
+                        <div className="relative h-14  w-36 cursor-pointer overflow-hidden rounded-full ">
+                            <Image
+                                layout="fill"
+                                objectFit="contain"
+                                src="/img/logo.png"
+                                alt="logo"
+                            />
+                        </div>
+                    </Link>
+                    <Link href="/">
+                        <li className="listItem">Events</li>
+                    </Link>
+                    <Link href="/">
+                        <li className="listItem">Blog</li>
+                    </Link>
+                    <Link href="/">
+                        <li className="listItem">Contact</li>
+                    </Link>
                 </ul>
             </div>
             {/* right */}
