@@ -8,3 +8,11 @@ export interface IProduct {
     createdAt: Date
     updatedAt: Date
 }
+
+export interface IOrder {
+    _id: string
+    customer: string
+    address: string
+    total: string
+    status: string
+}
