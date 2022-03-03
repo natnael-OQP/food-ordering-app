@@ -19,7 +19,7 @@ export default async function handler(
             const product = await Product.findOne({ _id: id })
             res.status(200).json(product)
         } catch (error) {
-            res.status(5000).json(error)
+            res.status(500).json(error)
         }
     }
 
@@ -28,7 +28,7 @@ export default async function handler(
             const product = await Product.find()
             res.status(200).json(product)
         } catch (error) {
-            res.status(5000).json(error)
+            res.status(500).json(error)
         }
     }
 
@@ -37,7 +37,7 @@ export default async function handler(
             const product = await Product.deleteOne({ _id: id })
             res.status(200).json(product)
         } catch (error) {
-            res.status(5000).json(error)
+            res.status(500).json(error)
         }
     }
 
