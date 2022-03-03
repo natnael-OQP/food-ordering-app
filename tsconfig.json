@@ -24,7 +24,8 @@
         "redux/store.js",
         "pages/_app.js",
         "redux/cartSlice.js",
-        "pages/api/login.js"
+        "pages/api/login.js",
+        "components/AddProduct.js"
     ],
     "exclude": ["node_modules"]
 }
