@@ -1,29 +1,52 @@
+import axios from 'axios'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
 const AddProduct = ({ setClose }) => {
     const [file, setFile] = useState(null)
     const [title, setTitle] = useState('')
-    const [desc, setDesc] = useState('')
+    const [description, setDescription] = useState('')
     const [prices, setPrices] = useState([])
     const [extraOptions, setExtraOptions] = useState([])
     const [extra, setExtra] = useState({ text: '', price: '' })
 
     const changePrice = (e, index) => {
-        setPrices((prev) => [...prev, [(prices[index] = e.target.value)]])
+        const currentPrices = prices
+        currentPrices[index] = e.target.value
+        setPrices(currentPrices)
     }
-
     const handleExtraInput = (e) => {
         setExtra({ ...extra, [e.target.name]: e.target.value })
     }
-
     const handleExtra = () => {
-        setExtraOptions((prev) => [...prev, extra])
+        setExtraOptions((prev) => [...prev, extra, prices])
         setExtra({ text: '', price: '' })
     }
+    const handleCreate = async () => {
+        const data = new FormData()
+        data.append('file', file)
+        data.append('upload_preset', 'uploads')
+        try {
+            const upload = await axios.post(
+                'https://api.cloudinary.com/v1_1/pizza-oqp/image/upload',
+                data
+            )
+            const { url } = upload.data
+            console.log(url)
+            const newProduct = {
+                title,
+                description,
+                image: url,
+                prices,
+                extraOptions,
+            }
+            await axios.post('http://localhost:3000/api/product', newProduct)
+            setClose(false)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-    const handleCreate = async () => {}
-    console.log(prices)
     return (
         <div className="fixed top-0 left-0 right-0 bottom-0 z-50 flex h-screen  w-full  items-center justify-center bg-opacity-40 bg-clip-padding backdrop-blur-md backdrop-filter">
             <div className=" relative mx-3 h-[535px] w-full rounded-md border border-gray-400 bg-slate-100 shadow-xl md:w-[400px]">
@@ -53,12 +76,12 @@ const AddProduct = ({ setClose }) => {
                     </div>
                     <div className="flex flex-col">
                         <label className="pb-1 text-sm font-semibold text-gray-800">
-                            Desc
+                            description
                         </label>
                         <textarea
                             className="border-b border-gray-400 px-2 py-2 text-xs font-semibold text-gray-600 outline-none focus:rounded-md focus:border-b-2"
                             rows={4}
-                            onChange={(e) => setDesc(e.target.value)}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -123,7 +146,7 @@ const AddProduct = ({ setClose }) => {
                                     key={i}
                                     className="mx-[6px] cursor-pointer rounded-md border border-purple-600 px-[6px] py-[3px]  text-sm font-semibold text-sky-600 shadow-md transition duration-300 hover:scale-105 active:scale-95"
                                 >
-                                    {option?.text}
+                                    {option?.text !== '' && option?.text}
                                 </span>
                             ))}
                         </div>
