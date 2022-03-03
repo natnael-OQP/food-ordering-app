@@ -28,7 +28,7 @@ const AddProduct = ({ setClose }) => {
         data.append('upload_preset', 'uploads')
         try {
             const upload = await axios.post(
-                'https://api.cloudinary.com/v1_1/pizza-oqp/image/upload',
+                `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_ID}/image/upload`,
                 data
             )
             const { url } = upload.data
