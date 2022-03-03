@@ -1,8 +1,7 @@
 import axios from 'axios'
-import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import React, { FC, useState } from 'react'
-import { IProduct, IOrder } from '../../type'
+import { IProduct } from '../../type'
 
 interface Props {
     products: IProduct[]
@@ -90,7 +89,17 @@ const Admin: FC<Props> = ({ products }) => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps = async (context: any) => {
+    const cookie = context.req?.cookies || ''
+    if (cookie.token !== process.env.TOKEN) {
+        return {
+            redirect: {
+                destination: '/admin/login',
+                permanent: false,
+            },
+        }
+    }
+
     const { data: products } = await axios.get(
         'http://localhost:3000/api/product'
     )
