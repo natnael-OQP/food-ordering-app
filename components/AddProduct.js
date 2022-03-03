@@ -40,7 +40,10 @@ const AddProduct = ({ setClose }) => {
                 prices,
                 extraOptions,
             }
-            await axios.post('http://localhost:3000/api/product', newProduct)
+            await axios.post(
+                'https://food-ordering-app-oqp.vercel.app//api/product',
+                newProduct
+            )
             setClose(false)
         } catch (error) {
             console.log(error)

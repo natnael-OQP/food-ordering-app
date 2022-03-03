@@ -13,7 +13,9 @@ const Admin: FC<Props> = ({ products }) => {
     // optimistic ui
     const handelDelete = async (id: string) => {
         setPizza(pizza.filter((pizza) => pizza._id !== id))
-        axios.delete('http://localhost:3000/api/product/' + id)
+        axios.delete(
+            'https://food-ordering-app-oqp.vercel.app/api/product/' + id
+        )
     }
 
     return (
@@ -101,7 +103,7 @@ export const getServerSideProps = async (context: any) => {
     }
 
     const { data: products } = await axios.get(
-        'http://localhost:3000/api/product'
+        'https://food-ordering-app-oqp.vercel.app/api/product'
     )
 
     return {

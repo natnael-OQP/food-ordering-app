@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         admin = true
     }
     const { data: products } = await axios.get(
-        'http://localhost:3000/api/product'
+        'https://food-ordering-app-oqp.vercel.app/api/product'
     )
     return {
         props: {

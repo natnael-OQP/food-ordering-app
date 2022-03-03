@@ -9,10 +9,13 @@ const Login = () => {
     const router = useRouter()
     const handelClick = async () => {
         if (username && password) {
-            await axios.post('http://localhost:3000/api/login', {
-                username,
-                password,
-            })
+            await axios.post(
+                'https://food-ordering-app-oqp.vercel.app/api/login',
+                {
+                    username,
+                    password,
+                }
+            )
             router.push('/admin')
         } else {
             setError(true)

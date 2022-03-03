@@ -158,7 +158,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     params: { id },
 }: any) => {
     const { data: pizza } = await axios.get(
-        `http://localhost:3000/api/product/${id}`
+        `https://food-ordering-app-oqp.vercel.app/api/product/${id}`
     )
 
     return {
