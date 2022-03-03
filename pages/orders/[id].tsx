@@ -13,7 +13,7 @@ const Orders = () => {
             return 'mt-10 flex flex-col items-center justify-around opacity-20 space-y-3'
     }
     return (
-        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-6 xl:pt-10">
+        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 md:grid-cols-6 md:pt-10">
             <div className="md:px-4 xl:col-span-4">
                 <table className="w-full  text-left">
                     <tr>

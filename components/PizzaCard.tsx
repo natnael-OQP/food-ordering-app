@@ -14,7 +14,7 @@ const PizzaCard: FC<Props> = ({ product }) => {
                 <div className="relative h-[200px] w-full">
                     <Image
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                         src={product.image}
                         alt={product.title}
                     />
@@ -23,7 +23,10 @@ const PizzaCard: FC<Props> = ({ product }) => {
                     {product.title}
                 </h1>
                 <span className="text-lg font-semibold text-gray-700">
-                    {product?.prices[0]}
+                    {product?.prices[0]}{' '}
+                    <span className="text-xs font-normal text-gray-400 ">
+                        birr
+                    </span>
                 </span>
                 <p className="mx-auto max-w-[65vw] text-center text-sm font-normal text-gray-500">
                     {product.description}

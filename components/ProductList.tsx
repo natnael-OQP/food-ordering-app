@@ -17,7 +17,7 @@ const ProductList: FC<Props> = ({ productList }) => {
                 pariatur error earum voluptatem similique
             </p>
             {/* PizzaCard container */}
-            <div className="mt-16 grid grid-cols-1 gap-8  sm:grid-cols-2 md:max-w-[90vw] xl:max-w-[87vw] xl:grid-cols-4">
+            <div className="mt-16 grid grid-cols-1 gap-8  sm:grid-cols-2 md:max-w-[90vw] md:grid-cols-4 xl:max-w-[87vw]">
                 {productList.map((product) => (
                     <PizzaCard key={product._id} product={product} />
                 ))}

@@ -17,7 +17,7 @@ const Admin: FC<Props> = ({ products }) => {
     }
 
     return (
-        <div className="width full grid grid-cols-1 gap-y-10 pt-5 pb-40 md:min-h-[400px] xl:min-h-[calc(100vh_-_110px)] xl:grid-cols-2 xl:pb-20">
+        <div className="width full grid grid-cols-1 gap-y-10 pt-5 pb-40  md:min-h-[calc(100vh_-_110px)] xl:grid-cols-2 xl:pb-20">
             {/* product */}
             <div className="pl-2 xl:pl-6">
                 <h1 className="py-6 text-3xl font-bold text-gray-700 md:text-4xl">

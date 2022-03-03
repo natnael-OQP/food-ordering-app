@@ -19,7 +19,7 @@ const Featured = () => {
     }
 
     return (
-        <div className="relative flex h-[40vh] w-full   bg-red-600 md:h-[50vh] xl:h-[calc(100vh_-_70px)] ">
+        <div className="relative flex h-[40vh] w-full   bg-red-600  md:h-[calc(100vh_-_70px)] ">
             {/* arrow left */}
             <div className="absolute left-2   top-[40%] cursor-pointer  md:left-4 xl:left-6">
                 <div

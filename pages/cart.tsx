@@ -7,8 +7,8 @@ const Cart = () => {
     const total = useSelector((state: RootStateOrAny) => state.cart.total)
     const pizzas = useSelector((state: RootStateOrAny) => state.cart.products)
     return (
-        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 xl:grid-cols-5 xl:pt-10 ">
-            <div className="md:px-4 xl:col-span-3">
+        <div className="grid h-[calc(100vh_-_120px)] grid-cols-1 md:grid-cols-5 md:pt-10 ">
+            <div className="md:col-span-3 md:px-4">
                 <table className="w-full   text-left">
                     <tr>
                         <th className="">Product</th>
@@ -22,7 +22,7 @@ const Cart = () => {
                     {pizzas.map((pizza: any) => (
                         <tr key={pizza._id}>
                             <td>
-                                <div className="relative my-2   h-10  w-10  rounded-full  md:h-20 md:w-20">
+                                <div className="relative my-2   h-16  w-16  rounded-full  md:h-20 md:w-20">
                                     <Image
                                         layout="fill"
                                         objectFit="cover"
@@ -68,7 +68,7 @@ const Cart = () => {
                     ))}
                 </table>
             </div>
-            <div className="mx-auto h-[300px] rounded-lg bg-slate-700 p-6 px-10 shadow-lg md:w-[500px] xl:w-[300px] ">
+            <div className="mx-auto h-[300px] rounded-lg bg-slate-700 p-6 px-10 shadow-lg md:w-[300px]  ">
                 <h2 className="py-4 text-3xl font-semibold text-white">
                     CART TOTAL
                 </h2>

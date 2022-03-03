@@ -37,8 +37,8 @@ export default function Product({ pizza }: Props) {
     }
 
     return (
-        <div className=" grid h-full grid-cols-1 pt-5 md:h-[95vh] md:grid-cols-2 md:py-10  xl:h-[calc(100vh_-_70px)]">
-            <div className="relative h-[200px]  w-full md:h-[350px] xl:h-[500px] ">
+        <div className="grid h-full grid-cols-1 gap-x-10 pb-10 pt-5 sm:min-h-[95vh] md:min-h-[calc(100vh_-_70px)] md:grid-cols-2  md:py-10">
+            <div className="relative h-[200px]  w-full md:h-[300px]  ">
                 <Image
                     layout="fill"
                     objectFit="contain"
